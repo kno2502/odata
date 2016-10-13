@@ -2,13 +2,15 @@
 http_interactions:
 - request:
     method: get
-    uri: http://services.odata.org/OData/OData.svc/$metadata
+    uri: http://services.odata.org/TripPinRESTierService/(S(iccvp4pnjhdy0xmanptrflz5))/$metadata
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
       - Typhoeus - https://github.com/typhoeus/typhoeus
+      Accept:
+      - "*/*"
   response:
     status:
       code: 200
@@ -16,149 +18,284 @@ http_interactions:
     headers:
       Cache-Control:
       - no-cache
+      Pragma:
+      - no-cache
       Content-Length:
-      - '10034'
+      - '9179'
       Content-Type:
-      - application/xml;charset=utf-8
+      - application/xml
+      Expires:
+      - "-1"
       Server:
       - Microsoft-IIS/8.0
-      X-Content-Type-Options:
-      - nosniff
-      DataServiceVersion:
-      - 3.0;
+      OData-Version:
+      - '4.0'
       X-AspNet-Version:
       - 4.0.30319
       X-Powered-By:
       - ASP.NET
       Access-Control-Allow-Origin:
       - "*"
-      Access-Control-Allow-Methods:
-      - GET
-      Access-Control-Allow-Headers:
-      - Accept, Origin, Content-Type, MaxDataServiceVersion
-      Access-Control-Expose-Headers:
-      - DataServiceVersion
       Set-Cookie:
-      - ARRAffinity=a9aad020fb0149d28d0efdb1e8bab24ad3481a904c8fb94abced8813c01ee265;Path=/;Domain=services.odata.org
+      - ARRAffinity=690c220c855313878c413c027a897a9b9552f094c99c5904f390a3a3ce97706f;Path=/;Domain=services.odata.org
       Date:
-      - Sat, 19 Jul 2014 02:59:53 GMT
+      - Wed, 12 Oct 2016 08:12:22 GMT
+      X-Cache:
+      - MISS from gk0
+      X-Cache-Lookup:
+      - MISS from gk0:8001
+      Via:
+      - 1.1 gk0 (squid/3.4.8)
+      Connection:
+      - keep-alive
     body:
       encoding: UTF-8
-      string: <?xml version="1.0" encoding="utf-8"?><edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"><edmx:DataServices
-        m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"><Schema
-        Namespace="ODataDemo" xmlns="http://schemas.microsoft.com/ado/2009/11/edm"><EntityType
-        Name="Product"><Key><PropertyRef Name="ID" /></Key><Property Name="ID" Type="Edm.Int32"
-        Nullable="false" /><Property Name="Name" Type="Edm.String" m:FC_TargetPath="SyndicationTitle"
-        m:FC_ContentKind="text" m:FC_KeepInContent="false" /><Property Name="Description"
-        Type="Edm.String" m:FC_TargetPath="SyndicationSummary" m:FC_ContentKind="text"
-        m:FC_KeepInContent="false" /><Property Name="ReleaseDate" Type="Edm.DateTime"
-        Nullable="false" /><Property Name="DiscontinuedDate" Type="Edm.DateTime" /><Property
-        Name="Rating" Type="Edm.Int16" Nullable="false" /><Property Name="Price" Type="Edm.Double"
-        Nullable="false" /><NavigationProperty Name="Categories" Relationship="ODataDemo.Product_Categories_Category_Products"
-        ToRole="Category_Products" FromRole="Product_Categories" /><NavigationProperty
-        Name="Supplier" Relationship="ODataDemo.Product_Supplier_Supplier_Products"
-        ToRole="Supplier_Products" FromRole="Product_Supplier" /><NavigationProperty
-        Name="ProductDetail" Relationship="ODataDemo.Product_ProductDetail_ProductDetail_Product"
-        ToRole="ProductDetail_Product" FromRole="Product_ProductDetail" /></EntityType><EntityType
-        Name="FeaturedProduct" BaseType="ODataDemo.Product"><NavigationProperty Name="Advertisement"
-        Relationship="ODataDemo.FeaturedProduct_Advertisement_Advertisement_FeaturedProduct"
-        ToRole="Advertisement_FeaturedProduct" FromRole="FeaturedProduct_Advertisement"
-        /></EntityType><EntityType Name="ProductDetail"><Key><PropertyRef Name="ProductID"
-        /></Key><Property Name="ProductID" Type="Edm.Int32" Nullable="false" /><Property
-        Name="Details" Type="Edm.String" /><NavigationProperty Name="Product" Relationship="ODataDemo.Product_ProductDetail_ProductDetail_Product"
-        ToRole="Product_ProductDetail" FromRole="ProductDetail_Product" /></EntityType><EntityType
-        Name="Category" OpenType="true"><Key><PropertyRef Name="ID" /></Key><Property
-        Name="ID" Type="Edm.Int32" Nullable="false" /><Property Name="Name" Type="Edm.String"
-        m:FC_TargetPath="SyndicationTitle" m:FC_ContentKind="text" m:FC_KeepInContent="true"
-        /><NavigationProperty Name="Products" Relationship="ODataDemo.Product_Categories_Category_Products"
-        ToRole="Product_Categories" FromRole="Category_Products" /></EntityType><EntityType
-        Name="Supplier"><Key><PropertyRef Name="ID" /></Key><Property Name="ID" Type="Edm.Int32"
-        Nullable="false" /><Property Name="Name" Type="Edm.String" m:FC_TargetPath="SyndicationTitle"
-        m:FC_ContentKind="text" m:FC_KeepInContent="true" /><Property Name="Address"
-        Type="ODataDemo.Address" /><Property Name="Location" Type="Edm.GeographyPoint"
-        SRID="Variable" /><Property Name="Concurrency" Type="Edm.Int32" ConcurrencyMode="Fixed"
-        Nullable="false" /><NavigationProperty Name="Products" Relationship="ODataDemo.Product_Supplier_Supplier_Products"
-        ToRole="Product_Supplier" FromRole="Supplier_Products" /></EntityType><ComplexType
-        Name="Address"><Property Name="Street" Type="Edm.String" /><Property Name="City"
-        Type="Edm.String" /><Property Name="State" Type="Edm.String" /><Property Name="ZipCode"
-        Type="Edm.String" /><Property Name="Country" Type="Edm.String" /></ComplexType><EntityType
-        Name="Person"><Key><PropertyRef Name="ID" /></Key><Property Name="ID" Type="Edm.Int32"
-        Nullable="false" /><Property Name="Name" Type="Edm.String" /><NavigationProperty
-        Name="PersonDetail" Relationship="ODataDemo.Person_PersonDetail_PersonDetail_Person"
-        ToRole="PersonDetail_Person" FromRole="Person_PersonDetail" /></EntityType><EntityType
-        Name="Customer" BaseType="ODataDemo.Person"><Property Name="TotalExpense"
-        Type="Edm.Decimal" Nullable="false" /></EntityType><EntityType Name="Employee"
-        BaseType="ODataDemo.Person"><Property Name="EmployeeID" Type="Edm.Int64" Nullable="false"
-        /><Property Name="HireDate" Type="Edm.DateTime" Nullable="false" /><Property
-        Name="Salary" Type="Edm.Single" Nullable="false" /></EntityType><EntityType
-        Name="PersonDetail"><Key><PropertyRef Name="PersonID" /></Key><Property Name="PersonID"
-        Type="Edm.Int32" Nullable="false" /><Property Name="Age" Type="Edm.Byte" Nullable="false"
-        /><Property Name="Gender" Type="Edm.Boolean" Nullable="false" /><Property
-        Name="Phone" Type="Edm.String" /><Property Name="Address" Type="ODataDemo.Address"
-        /><Property Name="Photo" Type="Edm.Stream" Nullable="false" /><NavigationProperty
-        Name="Person" Relationship="ODataDemo.Person_PersonDetail_PersonDetail_Person"
-        ToRole="Person_PersonDetail" FromRole="PersonDetail_Person" /></EntityType><EntityType
-        Name="Advertisement" m:HasStream="true"><Key><PropertyRef Name="ID" /></Key><Property
-        Name="ID" Type="Edm.Guid" Nullable="false" /><Property Name="Name" Type="Edm.String"
-        /><Property Name="AirDate" Type="Edm.DateTime" Nullable="false" /><NavigationProperty
-        Name="FeaturedProduct" Relationship="ODataDemo.FeaturedProduct_Advertisement_Advertisement_FeaturedProduct"
-        ToRole="FeaturedProduct_Advertisement" FromRole="Advertisement_FeaturedProduct"
-        /></EntityType><Association Name="Product_Categories_Category_Products"><End
-        Type="ODataDemo.Category" Role="Category_Products" Multiplicity="*" /><End
-        Type="ODataDemo.Product" Role="Product_Categories" Multiplicity="*" /></Association><Association
-        Name="Product_Supplier_Supplier_Products"><End Type="ODataDemo.Supplier" Role="Supplier_Products"
-        Multiplicity="0..1" /><End Type="ODataDemo.Product" Role="Product_Supplier"
-        Multiplicity="*" /></Association><Association Name="Product_ProductDetail_ProductDetail_Product"><End
-        Type="ODataDemo.ProductDetail" Role="ProductDetail_Product" Multiplicity="0..1"
-        /><End Type="ODataDemo.Product" Role="Product_ProductDetail" Multiplicity="0..1"
-        /></Association><Association Name="FeaturedProduct_Advertisement_Advertisement_FeaturedProduct"><End
-        Type="ODataDemo.Advertisement" Role="Advertisement_FeaturedProduct" Multiplicity="0..1"
-        /><End Type="ODataDemo.FeaturedProduct" Role="FeaturedProduct_Advertisement"
-        Multiplicity="0..1" /></Association><Association Name="Person_PersonDetail_PersonDetail_Person"><End
-        Type="ODataDemo.PersonDetail" Role="PersonDetail_Person" Multiplicity="0..1"
-        /><End Type="ODataDemo.Person" Role="Person_PersonDetail" Multiplicity="0..1"
-        /></Association><EntityContainer Name="DemoService" m:IsDefaultEntityContainer="true"><EntitySet
-        Name="Products" EntityType="ODataDemo.Product" /><EntitySet Name="ProductDetails"
-        EntityType="ODataDemo.ProductDetail" /><EntitySet Name="Categories" EntityType="ODataDemo.Category"
-        /><EntitySet Name="Suppliers" EntityType="ODataDemo.Supplier" /><EntitySet
-        Name="Persons" EntityType="ODataDemo.Person" /><EntitySet Name="PersonDetails"
-        EntityType="ODataDemo.PersonDetail" /><EntitySet Name="Advertisements" EntityType="ODataDemo.Advertisement"
-        /><FunctionImport Name="GetProductsByRating" ReturnType="Collection(ODataDemo.Product)"
-        EntitySet="Products" m:HttpMethod="GET"><Parameter Name="rating" Type="Edm.Int16"
-        Nullable="false" /></FunctionImport><AssociationSet Name="Products_Advertisement_Advertisements"
-        Association="ODataDemo.FeaturedProduct_Advertisement_Advertisement_FeaturedProduct"><End
-        Role="FeaturedProduct_Advertisement" EntitySet="Products" /><End Role="Advertisement_FeaturedProduct"
-        EntitySet="Advertisements" /></AssociationSet><AssociationSet Name="Products_Categories_Categories"
-        Association="ODataDemo.Product_Categories_Category_Products"><End Role="Product_Categories"
-        EntitySet="Products" /><End Role="Category_Products" EntitySet="Categories"
-        /></AssociationSet><AssociationSet Name="Products_Supplier_Suppliers" Association="ODataDemo.Product_Supplier_Supplier_Products"><End
-        Role="Product_Supplier" EntitySet="Products" /><End Role="Supplier_Products"
-        EntitySet="Suppliers" /></AssociationSet><AssociationSet Name="Products_ProductDetail_ProductDetails"
-        Association="ODataDemo.Product_ProductDetail_ProductDetail_Product"><End Role="Product_ProductDetail"
-        EntitySet="Products" /><End Role="ProductDetail_Product" EntitySet="ProductDetails"
-        /></AssociationSet><AssociationSet Name="Persons_PersonDetail_PersonDetails"
-        Association="ODataDemo.Person_PersonDetail_PersonDetail_Person"><End Role="Person_PersonDetail"
-        EntitySet="Persons" /><End Role="PersonDetail_Person" EntitySet="PersonDetails"
-        /></AssociationSet></EntityContainer><Annotations Target="ODataDemo.DemoService"><ValueAnnotation
-        Term="Org.OData.Display.V1.Description" String="This is a sample OData service
-        with vocabularies" /></Annotations><Annotations Target="ODataDemo.Product"><ValueAnnotation
-        Term="Org.OData.Display.V1.Description" String="All Products available in
-        the online store" /></Annotations><Annotations Target="ODataDemo.Product/Name"><ValueAnnotation
-        Term="Org.OData.Display.V1.DisplayName" String="Product Name" /></Annotations><Annotations
-        Target="ODataDemo.DemoService/Suppliers"><ValueAnnotation Term="Org.OData.Publication.V1.PublisherName"
-        String="Microsoft Corp." /><ValueAnnotation Term="Org.OData.Publication.V1.PublisherId"
-        String="MSFT" /><ValueAnnotation Term="Org.OData.Publication.V1.Keywords"
-        String="Inventory, Supplier, Advertisers, Sales, Finance" /><ValueAnnotation
-        Term="Org.OData.Publication.V1.AttributionUrl" String="http://www.odata.org/"
-        /><ValueAnnotation Term="Org.OData.Publication.V1.AttributionDescription"
-        String="All rights reserved" /><ValueAnnotation Term="Org.OData.Publication.V1.DocumentationUrl
-        " String="http://www.odata.org/" /><ValueAnnotation Term="Org.OData.Publication.V1.TermsOfUseUrl"
-        String="All rights reserved" /><ValueAnnotation Term="Org.OData.Publication.V1.PrivacyPolicyUrl"
-        String="http://www.odata.org/" /><ValueAnnotation Term="Org.OData.Publication.V1.LastModified"
-        String="4/2/2013" /><ValueAnnotation Term="Org.OData.Publication.V1.ImageUrl
-        " String="http://www.odata.org/" /></Annotations></Schema></edmx:DataServices></edmx:Edmx>
+      string: <?xml version="1.0" encoding="utf-8"?><edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:DataServices><Schema
+        Namespace="Microsoft.OData.Service.Sample.TrippinInMemory.Models" xmlns="http://docs.oasis-open.org/odata/ns/edm"><EntityType
+        Name="Person"><Key><PropertyRef Name="UserName" /></Key><Property Name="UserName"
+        Type="Edm.String" Nullable="false" /><Property Name="FirstName" Type="Edm.String"
+        Nullable="false" /><Property Name="LastName" Type="Edm.String" /><Property
+        Name="MiddleName" Type="Edm.String" /><Property Name="Gender" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PersonGender"
+        Nullable="false" /><Property Name="Age" Type="Edm.Int64" /><Property Name="Emails"
+        Type="Collection(Edm.String)" /><Property Name="AddressInfo" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location)"
+        /><Property Name="HomeAddress" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+        /><Property Name="FavoriteFeature" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+        Nullable="false" /><Property Name="Features" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)"
+        Nullable="false" /><NavigationProperty Name="Friends" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)"
+        /><NavigationProperty Name="BestFriend" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><NavigationProperty Name="Trips" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip)"
+        /></EntityType><EntityType Name="Airline"><Key><PropertyRef Name="AirlineCode"
+        /></Key><Property Name="AirlineCode" Type="Edm.String" Nullable="false" /><Property
+        Name="Name" Type="Edm.String" /></EntityType><EntityType Name="Airport"><Key><PropertyRef
+        Name="IcaoCode" /></Key><Property Name="Name" Type="Edm.String" /><Property
+        Name="IcaoCode" Type="Edm.String" Nullable="false" /><Property Name="IataCode"
+        Type="Edm.String" /><Property Name="Location" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.AirportLocation"
+        /></EntityType><ComplexType Name="Location"><Property Name="Address" Type="Edm.String"
+        /><Property Name="City" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.City"
+        /></ComplexType><ComplexType Name="City"><Property Name="Name" Type="Edm.String"
+        /><Property Name="CountryRegion" Type="Edm.String" /><Property Name="Region"
+        Type="Edm.String" /></ComplexType><ComplexType Name="AirportLocation" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"><Property
+        Name="Loc" Type="Edm.GeographyPoint" /></ComplexType><ComplexType Name="EventLocation"
+        BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"><Property
+        Name="BuildingInfo" Type="Edm.String" /></ComplexType><EntityType Name="Trip"><Key><PropertyRef
+        Name="TripId" /></Key><Property Name="TripId" Type="Edm.Int32" Nullable="false"
+        /><Property Name="ShareId" Type="Edm.Guid" Nullable="false" /><Property Name="Name"
+        Type="Edm.String" /><Property Name="Budget" Type="Edm.Single" Nullable="false"
+        /><Property Name="Description" Type="Edm.String" /><Property Name="Tags" Type="Collection(Edm.String)"
+        /><Property Name="StartsAt" Type="Edm.DateTimeOffset" Nullable="false" /><Property
+        Name="EndsAt" Type="Edm.DateTimeOffset" Nullable="false" /><NavigationProperty
+        Name="PlanItems" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.PlanItem)"
+        /></EntityType><EntityType Name="PlanItem"><Key><PropertyRef Name="PlanItemId"
+        /></Key><Property Name="PlanItemId" Type="Edm.Int32" Nullable="false" /><Property
+        Name="ConfirmationCode" Type="Edm.String" /><Property Name="StartsAt" Type="Edm.DateTimeOffset"
+        Nullable="false" /><Property Name="EndsAt" Type="Edm.DateTimeOffset" Nullable="false"
+        /><Property Name="Duration" Type="Edm.Duration" Nullable="false" /></EntityType><EntityType
+        Name="Event" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PlanItem"><Property
+        Name="OccursAt" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.EventLocation"
+        /><Property Name="Description" Type="Edm.String" /></EntityType><EntityType
+        Name="PublicTransportation" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PlanItem"><Property
+        Name="SeatNumber" Type="Edm.String" /></EntityType><EntityType Name="Flight"
+        BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PublicTransportation"><Property
+        Name="FlightNumber" Type="Edm.String" /><NavigationProperty Name="Airline"
+        Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airline" /><NavigationProperty
+        Name="From" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airport"
+        /><NavigationProperty Name="To" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airport"
+        /></EntityType><EntityType Name="Employee" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"><Property
+        Name="Cost" Type="Edm.Int64" Nullable="false" /><NavigationProperty Name="Peers"
+        Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)"
+        /></EntityType><EntityType Name="Manager" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"><Property
+        Name="Budget" Type="Edm.Int64" Nullable="false" /><Property Name="BossOffice"
+        Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location" /><NavigationProperty
+        Name="DirectReports" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)"
+        /></EntityType><EnumType Name="PersonGender"><Member Name="Male" Value="0"
+        /><Member Name="Female" Value="1" /><Member Name="Unknow" Value="2" /></EnumType><EnumType
+        Name="Feature"><Member Name="Feature1" Value="0" /><Member Name="Feature2"
+        Value="1" /><Member Name="Feature3" Value="2" /><Member Name="Feature4" Value="3"
+        /></EnumType><Function Name="GetPersonWithMostFriends"><ReturnType Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /></Function><Function Name="GetNearestAirport"><Parameter Name="lat" Type="Edm.Double"
+        Nullable="false" /><Parameter Name="lon" Type="Edm.Double" Nullable="false"
+        /><ReturnType Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airport"
+        /></Function><Function Name="GetFavoriteAirline" IsBound="true" EntitySetPath="person"><Parameter
+        Name="person" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><ReturnType Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airline"
+        /></Function><Function Name="GetFriendsTrips" IsBound="true"><Parameter Name="person"
+        Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person" /><Parameter
+        Name="userName" Type="Edm.String" Nullable="false" Unicode="false" /><ReturnType
+        Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip)"
+        /></Function><Function Name="GetInvolvedPeople" IsBound="true"><Parameter
+        Name="trip" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip"
+        /><ReturnType Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)"
+        /></Function><Action Name="ResetDataSource" /><Function Name="UpdatePersonLastName"
+        IsBound="true"><Parameter Name="person" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><Parameter Name="lastName" Type="Edm.String" Nullable="false" Unicode="false"
+        /><ReturnType Type="Edm.Boolean" Nullable="false" /></Function><Action Name="ShareTrip"
+        IsBound="true"><Parameter Name="personInstance" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><Parameter Name="userName" Type="Edm.String" Nullable="false" Unicode="false"
+        /><Parameter Name="tripId" Type="Edm.Int32" Nullable="false" /></Action><EntityContainer
+        Name="Container"><EntitySet Name="People" EntityType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"><NavigationPropertyBinding
+        Path="Friends" Target="People" /><NavigationPropertyBinding Path="BestFriend"
+        Target="People" /><NavigationPropertyBinding Path="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Employee/Peers"
+        Target="People" /><NavigationPropertyBinding Path="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Manager/DirectReports"
+        Target="People" /></EntitySet><EntitySet Name="Airlines" EntityType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airline"><Annotation
+        Term="Org.OData.Core.V1.OptimisticConcurrency"><Collection><PropertyPath>Name</PropertyPath></Collection></Annotation></EntitySet><EntitySet
+        Name="Airports" EntityType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airport"
+        /><EntitySet Name="NewComePeople" EntityType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><Singleton Name="Me" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><FunctionImport Name="GetPersonWithMostFriends" Function="Microsoft.OData.Service.Sample.TrippinInMemory.Models.GetPersonWithMostFriends"
+        EntitySet="People" /><FunctionImport Name="GetNearestAirport" Function="Microsoft.OData.Service.Sample.TrippinInMemory.Models.GetNearestAirport"
+        EntitySet="Airports" /><ActionImport Name="ResetDataSource" Action="Microsoft.OData.Service.Sample.TrippinInMemory.Models.ResetDataSource"
+        /></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>
     http_version: '1.1'
     adapter_metadata:
-      effective_url: http://services.odata.org/OData/OData.svc/$metadata
-  recorded_at: Sat, 19 Jul 2014 02:59:53 GMT
-recorded_with: VCR 2.9.2
+      effective_url: http://services.odata.org/TripPinRESTierService/(S(iccvp4pnjhdy0xmanptrflz5))/$metadata
+  recorded_at: Wed, 12 Oct 2016 08:12:22 GMT
+- request:
+    method: get
+    uri: http://services.odata.org/TripPinRESTierService/(S(iccvp4pnjhdy0xmanptrflz5))//$metadata
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Typhoeus - https://github.com/typhoeus/typhoeus
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache
+      Pragma:
+      - no-cache
+      Content-Length:
+      - '9179'
+      Content-Type:
+      - application/xml
+      Expires:
+      - "-1"
+      Server:
+      - Microsoft-IIS/8.0
+      OData-Version:
+      - '4.0'
+      X-AspNet-Version:
+      - 4.0.30319
+      X-Powered-By:
+      - ASP.NET
+      Access-Control-Allow-Origin:
+      - "*"
+      Set-Cookie:
+      - ARRAffinity=690c220c855313878c413c027a897a9b9552f094c99c5904f390a3a3ce97706f;Path=/;Domain=services.odata.org
+      Date:
+      - Thu, 13 Oct 2016 04:26:06 GMT
+      X-Cache:
+      - MISS from gk0
+      X-Cache-Lookup:
+      - MISS from gk0:8001
+      Via:
+      - 1.1 gk0 (squid/3.4.8)
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: <?xml version="1.0" encoding="utf-8"?><edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:DataServices><Schema
+        Namespace="Microsoft.OData.Service.Sample.TrippinInMemory.Models" xmlns="http://docs.oasis-open.org/odata/ns/edm"><EntityType
+        Name="Person"><Key><PropertyRef Name="UserName" /></Key><Property Name="UserName"
+        Type="Edm.String" Nullable="false" /><Property Name="FirstName" Type="Edm.String"
+        Nullable="false" /><Property Name="LastName" Type="Edm.String" /><Property
+        Name="MiddleName" Type="Edm.String" /><Property Name="Gender" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PersonGender"
+        Nullable="false" /><Property Name="Age" Type="Edm.Int64" /><Property Name="Emails"
+        Type="Collection(Edm.String)" /><Property Name="AddressInfo" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location)"
+        /><Property Name="HomeAddress" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"
+        /><Property Name="FavoriteFeature" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature"
+        Nullable="false" /><Property Name="Features" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)"
+        Nullable="false" /><NavigationProperty Name="Friends" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)"
+        /><NavigationProperty Name="BestFriend" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><NavigationProperty Name="Trips" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip)"
+        /></EntityType><EntityType Name="Airline"><Key><PropertyRef Name="AirlineCode"
+        /></Key><Property Name="AirlineCode" Type="Edm.String" Nullable="false" /><Property
+        Name="Name" Type="Edm.String" /></EntityType><EntityType Name="Airport"><Key><PropertyRef
+        Name="IcaoCode" /></Key><Property Name="Name" Type="Edm.String" /><Property
+        Name="IcaoCode" Type="Edm.String" Nullable="false" /><Property Name="IataCode"
+        Type="Edm.String" /><Property Name="Location" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.AirportLocation"
+        /></EntityType><ComplexType Name="Location"><Property Name="Address" Type="Edm.String"
+        /><Property Name="City" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.City"
+        /></ComplexType><ComplexType Name="City"><Property Name="Name" Type="Edm.String"
+        /><Property Name="CountryRegion" Type="Edm.String" /><Property Name="Region"
+        Type="Edm.String" /></ComplexType><ComplexType Name="AirportLocation" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"><Property
+        Name="Loc" Type="Edm.GeographyPoint" /></ComplexType><ComplexType Name="EventLocation"
+        BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location"><Property
+        Name="BuildingInfo" Type="Edm.String" /></ComplexType><EntityType Name="Trip"><Key><PropertyRef
+        Name="TripId" /></Key><Property Name="TripId" Type="Edm.Int32" Nullable="false"
+        /><Property Name="ShareId" Type="Edm.Guid" Nullable="false" /><Property Name="Name"
+        Type="Edm.String" /><Property Name="Budget" Type="Edm.Single" Nullable="false"
+        /><Property Name="Description" Type="Edm.String" /><Property Name="Tags" Type="Collection(Edm.String)"
+        /><Property Name="StartsAt" Type="Edm.DateTimeOffset" Nullable="false" /><Property
+        Name="EndsAt" Type="Edm.DateTimeOffset" Nullable="false" /><NavigationProperty
+        Name="PlanItems" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.PlanItem)"
+        /></EntityType><EntityType Name="PlanItem"><Key><PropertyRef Name="PlanItemId"
+        /></Key><Property Name="PlanItemId" Type="Edm.Int32" Nullable="false" /><Property
+        Name="ConfirmationCode" Type="Edm.String" /><Property Name="StartsAt" Type="Edm.DateTimeOffset"
+        Nullable="false" /><Property Name="EndsAt" Type="Edm.DateTimeOffset" Nullable="false"
+        /><Property Name="Duration" Type="Edm.Duration" Nullable="false" /></EntityType><EntityType
+        Name="Event" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PlanItem"><Property
+        Name="OccursAt" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.EventLocation"
+        /><Property Name="Description" Type="Edm.String" /></EntityType><EntityType
+        Name="PublicTransportation" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PlanItem"><Property
+        Name="SeatNumber" Type="Edm.String" /></EntityType><EntityType Name="Flight"
+        BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.PublicTransportation"><Property
+        Name="FlightNumber" Type="Edm.String" /><NavigationProperty Name="Airline"
+        Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airline" /><NavigationProperty
+        Name="From" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airport"
+        /><NavigationProperty Name="To" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airport"
+        /></EntityType><EntityType Name="Employee" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"><Property
+        Name="Cost" Type="Edm.Int64" Nullable="false" /><NavigationProperty Name="Peers"
+        Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)"
+        /></EntityType><EntityType Name="Manager" BaseType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"><Property
+        Name="Budget" Type="Edm.Int64" Nullable="false" /><Property Name="BossOffice"
+        Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location" /><NavigationProperty
+        Name="DirectReports" Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)"
+        /></EntityType><EnumType Name="PersonGender"><Member Name="Male" Value="0"
+        /><Member Name="Female" Value="1" /><Member Name="Unknow" Value="2" /></EnumType><EnumType
+        Name="Feature"><Member Name="Feature1" Value="0" /><Member Name="Feature2"
+        Value="1" /><Member Name="Feature3" Value="2" /><Member Name="Feature4" Value="3"
+        /></EnumType><Function Name="GetPersonWithMostFriends"><ReturnType Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /></Function><Function Name="GetNearestAirport"><Parameter Name="lat" Type="Edm.Double"
+        Nullable="false" /><Parameter Name="lon" Type="Edm.Double" Nullable="false"
+        /><ReturnType Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airport"
+        /></Function><Function Name="GetFavoriteAirline" IsBound="true" EntitySetPath="person"><Parameter
+        Name="person" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><ReturnType Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airline"
+        /></Function><Function Name="GetFriendsTrips" IsBound="true"><Parameter Name="person"
+        Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person" /><Parameter
+        Name="userName" Type="Edm.String" Nullable="false" Unicode="false" /><ReturnType
+        Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip)"
+        /></Function><Function Name="GetInvolvedPeople" IsBound="true"><Parameter
+        Name="trip" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip"
+        /><ReturnType Type="Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)"
+        /></Function><Action Name="ResetDataSource" /><Function Name="UpdatePersonLastName"
+        IsBound="true"><Parameter Name="person" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><Parameter Name="lastName" Type="Edm.String" Nullable="false" Unicode="false"
+        /><ReturnType Type="Edm.Boolean" Nullable="false" /></Function><Action Name="ShareTrip"
+        IsBound="true"><Parameter Name="personInstance" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><Parameter Name="userName" Type="Edm.String" Nullable="false" Unicode="false"
+        /><Parameter Name="tripId" Type="Edm.Int32" Nullable="false" /></Action><EntityContainer
+        Name="Container"><EntitySet Name="People" EntityType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"><NavigationPropertyBinding
+        Path="Friends" Target="People" /><NavigationPropertyBinding Path="BestFriend"
+        Target="People" /><NavigationPropertyBinding Path="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Employee/Peers"
+        Target="People" /><NavigationPropertyBinding Path="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Manager/DirectReports"
+        Target="People" /></EntitySet><EntitySet Name="Airlines" EntityType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airline"><Annotation
+        Term="Org.OData.Core.V1.OptimisticConcurrency"><Collection><PropertyPath>Name</PropertyPath></Collection></Annotation></EntitySet><EntitySet
+        Name="Airports" EntityType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Airport"
+        /><EntitySet Name="NewComePeople" EntityType="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><Singleton Name="Me" Type="Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person"
+        /><FunctionImport Name="GetPersonWithMostFriends" Function="Microsoft.OData.Service.Sample.TrippinInMemory.Models.GetPersonWithMostFriends"
+        EntitySet="People" /><FunctionImport Name="GetNearestAirport" Function="Microsoft.OData.Service.Sample.TrippinInMemory.Models.GetNearestAirport"
+        EntitySet="Airports" /><ActionImport Name="ResetDataSource" Action="Microsoft.OData.Service.Sample.TrippinInMemory.Models.ResetDataSource"
+        /></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>
+    http_version: '1.1'
+    adapter_metadata:
+      effective_url: http://services.odata.org/TripPinRESTierService/(S(iccvp4pnjhdy0xmanptrflz5))//$metadata
+  recorded_at: Thu, 13 Oct 2016 04:26:07 GMT
+recorded_with: VCR 2.9.3

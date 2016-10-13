@@ -151,9 +151,7 @@ module OData
     # @param results [Typhoeus::Response]
     # @return [Nokogiri::XML::NodeSet]
     def find_entities(results)
-      document = ::Nokogiri::XML(results.body)
-      document.remove_namespaces!
-      document.xpath('//entry')
+      JSON.parse(results.body)['value']
     end
 
     # Get the property type for an entity from metadata.
@@ -237,7 +235,10 @@ module OData
     def default_options
       {
           typhoeus: {
-              headers: { 'DataServiceVersion' => '3.0' },
+              headers: {
+		# 'DataServiceVersion' => '4.0'
+		'Accept' => '*/*'
+	      },
               timeout: HTTP_TIMEOUT
           }
       }
@@ -251,20 +252,21 @@ module OData
 
     def read_metadata
       response = nil
-      # From file, good for debugging
-      if options[:metadata_file]
-        data = File.read(options[:metadata_file])
-        ::Nokogiri::XML(data).remove_namespaces!
-      else # From a URL
-        METADATA_TIMEOUTS.each do |timeout|
-          response = ::Typhoeus::Request.get(URI.escape("#{service_url}/$metadata"),
-                                             options[:typhoeus].merge(timeout: timeout))
-          break unless response.timed_out?
-        end
-        raise "Metadata Timeout" if response.timed_out?
-        validate_response(response)
-        ::Nokogiri::XML(response.body).remove_namespaces!
-      end
+      data = if options[:metadata_file]
+	       # From file, good for debugging
+	       File.read(options[:metadata_file])
+	     else
+	       # From a URL
+	       METADATA_TIMEOUTS.each do |timeout|
+		 response = ::Typhoeus.get(URI.escape("#{service_url}/$metadata"),
+					   options[:typhoeus].merge(timeout: timeout))
+		 break unless response.timed_out?
+	       end
+	       raise "Metadata Timeout" if response.timed_out?
+	       validate_response(response)
+	       response.body
+	     end
+      ::Nokogiri::XML(data).remove_namespaces!
     end
 
     def validate_response(response)
@@ -275,6 +277,7 @@ module OData
       raise "Method Not Allowed" if response.code == 405
       raise "Not Acceptable" if response.code == 406
       raise "Request Entity Too Large" if response.code == 413
+      # pp response
       raise "Internal Server Error" if response.code == 500
       raise "Service Unavailable" if response.code == 503
     end
